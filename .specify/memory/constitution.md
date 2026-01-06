@@ -1,50 +1,76 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version change: N/A → 1.0.0 (initial constitution)
+Modified principles: N/A (all new)
+Added sections: Technology Stack, Development Workflow
+Removed sections: N/A
+Templates requiring updates:
+  ✅ plan-template.md - Constitution Check section references constitution (no changes needed, dynamic reference)
+  ✅ spec-template.md - No direct references, aligns with principles (no changes needed)
+  ✅ tasks-template.md - Task organization aligns with principles (no changes needed)
+  ✅ checklist-template.md - Generic template, no updates needed
+Follow-up TODOs: None
+-->
+
+# Wishlist Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Clean & Modular Code
+Code MUST be organized into small, focused, reusable modules. Each module MUST have a single responsibility. Functions and components MUST be concise and well-named. Code MUST be self-documenting through clear naming and structure. Complex logic MUST be broken into smaller functions. Shared utilities MUST live in appropriate directories (`app/lib/`, `app/utils/`). Rationale: Clean, modular code improves maintainability, testability, and enables parallel development.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Next.js Best Practices (Server-First Architecture)
+The application MUST leverage Next.js App Router server components by default. Client components (`"use client"`) are ONLY used when interactivity is required (user input, browser APIs, state management, event handlers). Server components handle data fetching, rendering, and SEO optimization. Route handlers and Server Actions MUST be preferred over API routes when possible. Image optimization MUST use `next/image`. Fonts MUST use `next/font`. Metadata MUST be defined using the Metadata API. Rationale: Server-first approach improves performance, reduces client bundle size, provides better SEO, and follows Next.js recommended patterns.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Type Safety (NON-NEGOTIABLE)
+All code MUST be written in TypeScript with strict type checking enabled. No `any` types without explicit justification documented inline. Interfaces and types MUST be defined for all data structures, API responses, component props, and function parameters. Type definitions MUST be co-located with their usage or in shared `types/` directories. Rationale: Type safety prevents runtime errors, improves developer experience, enables better IDE support, and facilitates confident refactoring.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Testing Discipline
+Critical user flows MUST have integration tests. Component interactions and API contracts MUST be tested. Unit tests are required for complex business logic and utility functions. Tests are written alongside implementation, not as afterthought. Test files MUST be co-located with source files or in dedicated `__tests__/` directories. Rationale: Testing ensures reliability, prevents regressions, and enables confident refactoring and feature additions.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Performance & Accessibility
+The application MUST meet Core Web Vitals thresholds (LCP < 2.5s, FID < 100ms, CLS < 0.1). All interactive elements MUST be keyboard accessible. Images MUST have descriptive alt text. Color contrast MUST meet WCAG AA standards. Semantic HTML MUST be used appropriately. Loading states and error boundaries MUST be implemented for better UX. Rationale: Performance and accessibility are essential for user experience, inclusive design, and SEO.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technology Stack
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Framework**: Next.js 16+ (App Router)  
+**Language**: TypeScript 5+  
+**Styling**: Tailwind CSS 4+  
+**React**: React 19+  
+**Linting**: ESLint with Next.js config  
+**Package Manager**: npm
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Constraints**: 
+- No client-side state management libraries until complexity justifies (start with React state, Context API)
+- Prefer Next.js built-in features over external dependencies (Server Actions over API routes, `next/image` over `<img>`)
+- Server components by default; client components only when necessary
+- Use TypeScript strict mode
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+
+**Code Review**: All PRs MUST be reviewed before merge. Constitution compliance MUST be verified during review.
+
+**Branching**: Feature branches follow pattern `[###-feature-name]`. Main branch is protected.
+
+**Commits**: Clear, descriptive commit messages following conventional commits format. Atomic commits preferred.
+
+**Documentation**: Feature specifications in `/specs/[###-feature-name]/spec.md`. Implementation plans in `/specs/[###-feature-name]/plan.md`.
+
+**Quality Gates**: 
+- TypeScript compilation must pass with no errors
+- ESLint must pass with no errors
+- No console errors in development
+- Core Web Vitals must meet thresholds in production builds
+- All tests must pass
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices. Amendments require:
+1. Documentation of the change and rationale
+2. Update to this file with version bump (semantic versioning: MAJOR for breaking changes, MINOR for additions, PATCH for clarifications)
+3. Propagation to dependent templates and documentation
+4. Team review and approval
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+All PRs and reviews MUST verify compliance with these principles. Complexity beyond these principles MUST be justified with explicit rationale.
+
+**Version**: 1.0.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
