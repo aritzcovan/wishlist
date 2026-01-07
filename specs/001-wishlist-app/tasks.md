@@ -109,19 +109,19 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T036 [US3] Create new wishlist page in `app/(dashboard)/wishlists/new/page.tsx` (server component)
-- [ ] T037 [US3] Create WishlistForm client component in `app/components/wishlist/WishlistForm.tsx` with name input
-- [ ] T038 [US3] Create createWishlist server action in `app/lib/actions/wishlist.ts` with name validation and uniqueness check
-- [ ] T039 [US3] Create wishlist detail page in `app/(dashboard)/wishlists/[id]/page.tsx` (server component) that fetches wishlist and items
-- [ ] T040 [US3] Create getWishlist server action in `app/lib/actions/wishlist.ts` to fetch wishlist with items
-- [ ] T041 [US3] Create ItemForm client component in `app/components/wishlist/ItemForm.tsx` with name, description, and category selection
-- [ ] T042 [US3] Create getCategories server action in `app/lib/actions/categories.ts` to fetch preset event categories
-- [ ] T043 [US3] Create createItem server action in `app/lib/actions/items.ts` with validation for name, description, and category
-- [ ] T044 [US3] Add category selection dropdown in ItemForm with preset categories (birthday, Christmas, anniversary, just because, graduation, wedding, housewarming, baby shower)
-- [ ] T045 [US3] Display items on wishlist detail page grouped or filterable by event categories
-- [ ] T046 [US3] Add item list display component showing item name, description, and category
-- [ ] T047 [US3] Add validation for wishlist name (1-100 characters, unique per user) in createWishlist action
-- [ ] T048 [US3] Add validation for item name (1-200 characters) and description (max 1000 characters) in createItem action
+- [x] T036 [US3] Create new wishlist page in `app/(dashboard)/wishlists/new/page.tsx` (server component)
+- [x] T037 [US3] Create WishlistForm client component in `app/components/wishlist/WishlistForm.tsx` with name input
+- [x] T038 [US3] Create createWishlist server action in `app/lib/actions/wishlist.ts` with name validation and uniqueness check
+- [x] T039 [US3] Create wishlist detail page in `app/(dashboard)/wishlists/[id]/page.tsx` (server component) that fetches wishlist and items
+- [x] T040 [US3] Create getWishlist server action in `app/lib/actions/wishlist.ts` to fetch wishlist with items
+- [x] T041 [US3] Create ItemForm client component in `app/components/wishlist/ItemForm.tsx` with name, description, and category selection
+- [x] T042 [US3] Create getCategories server action in `app/lib/actions/categories.ts` to fetch preset event categories
+- [x] T043 [US3] Create createItem server action in `app/lib/actions/items.ts` with validation for name, description, and category
+- [x] T044 [US3] Add category selection dropdown in ItemForm with preset categories (birthday, Christmas, anniversary, just because, graduation, wedding, housewarming, baby shower)
+- [x] T045 [US3] Display items on wishlist detail page grouped or filterable by event categories
+- [x] T046 [US3] Add item list display component showing item name, description, and category
+- [x] T047 [US3] Add validation for wishlist name (1-100 characters, unique per user) in createWishlist action
+- [x] T048 [US3] Add validation for item name (1-200 characters) and description (max 1000 characters) in createItem action
 
 **Checkpoint**: At this point, User Stories 1, 2, AND 3 should all work independently. Users can create wishlists and add items with preset categories.
 
