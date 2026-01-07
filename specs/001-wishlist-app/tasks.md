@@ -26,13 +26,13 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directory structure per implementation plan in `app/`
-- [ ] T002 Install Supabase dependencies: `@supabase/supabase-js` and `@supabase/ssr` via npm
-- [ ] T003 Install Resend dependency: `resend` via npm
-- [ ] T004 [P] Initialize shadcn/ui with `npx shadcn@latest init` in project root
-- [ ] T005 [P] Install required shadcn/ui components: button, card, form, input, label, textarea, select, dialog, dropdown-menu
-- [ ] T006 Create `.env.local` file with Supabase and Resend environment variable placeholders
-- [ ] T007 [P] Configure TypeScript strict mode in `tsconfig.json`
+- [x] T001 Create project directory structure per implementation plan in `app/`
+- [x] T002 Install Supabase dependencies: `@supabase/supabase-js` and `@supabase/ssr` via npm
+- [x] T003 Install Resend dependency: `resend` via npm
+- [x] T004 [P] Initialize shadcn/ui with `npx shadcn@latest init` in project root
+- [x] T005 [P] Install required shadcn/ui components: button, card, form, input, label, textarea, select, dialog, dropdown-menu
+- [x] T006 Create `.env.local` file with Supabase and Resend environment variable placeholders
+- [x] T007 [P] Configure TypeScript strict mode in `tsconfig.json`
 
 ---
 
