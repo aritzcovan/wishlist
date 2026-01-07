@@ -42,14 +42,14 @@ description: "Task list template for feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T008 Setup Supabase project and create database schema using SQL from `quickstart.md`
-- [ ] T009 Create Supabase server client in `app/lib/supabase/client.ts`
-- [ ] T010 Create Supabase middleware for authentication in `app/lib/supabase/middleware.ts`
-- [ ] T011 [P] Create shared TypeScript types in `app/types/index.ts`
-- [ ] T012 [P] Create validation utilities in `app/utils/validation.ts` (email, password, text length)
-- [ ] T013 Generate Supabase TypeScript types and save to `app/lib/supabase/types.ts`
-- [ ] T014 Create email service wrapper in `app/lib/email/send.ts` for Resend integration
-- [ ] T015 Setup Next.js middleware to protect routes using Supabase auth in `middleware.ts` at project root
+- [ ] T008 Setup Supabase project and create database schema using SQL from `quickstart.md` (MANUAL - Complete when ready)
+- [x] T009 Create Supabase server client in `app/lib/supabase/client.ts`
+- [x] T010 Create Supabase middleware for authentication in `app/lib/supabase/middleware.ts`
+- [x] T011 [P] Create shared TypeScript types in `app/types/index.ts`
+- [x] T012 [P] Create validation utilities in `app/utils/validation.ts` (email, password, text length)
+- [x] T013 Generate Supabase TypeScript types and save to `app/lib/supabase/types.ts`
+- [x] T014 Create email service wrapper in `app/lib/email/send.ts` for Resend integration
+- [x] T015 Setup Next.js middleware to protect routes using Supabase auth in `middleware.ts` at project root
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
