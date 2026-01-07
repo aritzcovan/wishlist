@@ -1,0 +1,29 @@
+# wishlist Development Guidelines
+
+Auto-generated from all feature plans. Last updated: 2026-01-07
+
+## Active Technologies
+
+- TypeScript 5+ + Next.js 16.1.1, React 19.2.3, Supabase (auth + database), shadcn/ui, Tailwind CSS 4+ (001-wishlist-app)
+
+## Project Structure
+
+```text
+src/
+tests/
+```
+
+## Commands
+
+npm test && npm run lint
+
+## Code Style
+
+TypeScript 5+: Follow standard conventions
+
+## Recent Changes
+
+- 001-wishlist-app: Added TypeScript 5+ + Next.js 16.1.1, React 19.2.3, Supabase (auth + database), shadcn/ui, Tailwind CSS 4+
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->
