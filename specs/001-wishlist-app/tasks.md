@@ -63,18 +63,18 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T016 [US1] Create register page in `app/(auth)/register/page.tsx` (server component)
-- [ ] T017 [US1] Create RegisterForm client component in `app/components/auth/RegisterForm.tsx` with email and password fields
-- [ ] T018 [US1] Create registerUser server action in `app/lib/actions/auth.ts` with email/password validation
-- [ ] T019 [US1] Create login page in `app/(auth)/login/page.tsx` (server component)
-- [ ] T020 [US1] Create LoginForm client component in `app/components/auth/LoginForm.tsx` with email and password fields
-- [ ] T021 [US1] Create loginUser server action in `app/lib/actions/auth.ts` with credential validation
-- [ ] T022 [US1] Create reset password page in `app/(auth)/reset-password/page.tsx` (server component)
-- [ ] T023 [US1] Create resetPassword server action in `app/lib/actions/auth.ts` for password reset requests
-- [ ] T024 [US1] Create auth callback route handler in `app/api/auth/callback/route.ts` for Supabase auth callbacks
-- [ ] T025 [US1] Add logout functionality to navigation/header component
-- [ ] T026 [US1] Add password validation (min 8 chars, at least one letter and one number) in `app/utils/validation.ts`
-- [ ] T027 [US1] Add error handling and user feedback for authentication failures
+- [x] T016 [US1] Create register page in `app/(auth)/register/page.tsx` (server component)
+- [x] T017 [US1] Create RegisterForm client component in `app/components/auth/RegisterForm.tsx` with email and password fields
+- [x] T018 [US1] Create registerUser server action in `app/lib/actions/auth.ts` with email/password validation
+- [x] T019 [US1] Create login page in `app/(auth)/login/page.tsx` (server component)
+- [x] T020 [US1] Create LoginForm client component in `app/components/auth/LoginForm.tsx` with email and password fields
+- [x] T021 [US1] Create loginUser server action in `app/lib/actions/auth.ts` with credential validation
+- [x] T022 [US1] Create reset password page in `app/(auth)/reset-password/page.tsx` (server component)
+- [x] T023 [US1] Create resetPassword server action in `app/lib/actions/auth.ts` for password reset requests
+- [x] T024 [US1] Create auth callback route handler in `app/api/auth/callback/route.ts` for Supabase auth callbacks
+- [x] T025 [US1] Add logout functionality to navigation/header component
+- [x] T026 [US1] Add password validation (min 8 chars, at least one letter and one number) in `app/utils/validation.ts`
+- [x] T027 [US1] Add error handling and user feedback for authentication failures
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently. Users can register, log in, reset passwords, and log out.
 
