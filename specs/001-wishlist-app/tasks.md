@@ -88,14 +88,14 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T028 [US2] Create dashboard layout in `app/(dashboard)/layout.tsx` with authentication check
-- [ ] T029 [US2] Create dashboard page in `app/(dashboard)/page.tsx` (server component) that fetches user wishlists
-- [ ] T030 [US2] Create getWishlists server action in `app/lib/actions/wishlist.ts` to fetch all wishlists for authenticated user
-- [ ] T031 [US2] Create WishlistCard component in `app/components/wishlist/WishlistCard.tsx` to display wishlist information
-- [ ] T032 [US2] Create createSampleWishlist server action in `app/lib/actions/wishlist.ts` with sample data (3 items with different categories)
-- [ ] T033 [US2] Add logic to dashboard to create and display sample wishlist when user has no wishlists
-- [ ] T034 [US2] Add navigation from WishlistCard to wishlist detail page
-- [ ] T035 [US2] Style dashboard with grid layout for wishlist cards using shadcn/ui Card component
+- [x] T028 [US2] Create dashboard layout in `app/(dashboard)/layout.tsx` with authentication check
+- [x] T029 [US2] Create dashboard page in `app/(dashboard)/page.tsx` (server component) that fetches user wishlists
+- [x] T030 [US2] Create getWishlists server action in `app/lib/actions/wishlist.ts` to fetch all wishlists for authenticated user
+- [x] T031 [US2] Create WishlistCard component in `app/components/wishlist/WishlistCard.tsx` to display wishlist information
+- [x] T032 [US2] Create createSampleWishlist server action in `app/lib/actions/wishlist.ts` with sample data (3 items with different categories)
+- [x] T033 [US2] Add logic to dashboard to create and display sample wishlist when user has no wishlists
+- [x] T034 [US2] Add navigation from WishlistCard to wishlist detail page
+- [x] T035 [US2] Style dashboard with grid layout for wishlist cards using shadcn/ui Card component
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently. Users can authenticate and view their wishlist dashboard.
 
