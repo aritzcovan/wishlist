@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getWishlist } from '@/app/lib/actions/wishlist';
 import { ItemList } from '@/app/components/wishlist/ItemList';
 import { ItemForm } from '@/app/components/wishlist/ItemForm';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -12,15 +12,16 @@ export const metadata: Metadata = {
 };
 
 interface WishlistDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function WishlistDetailPage({
   params,
 }: WishlistDetailPageProps) {
-  const result = await getWishlist(params.id);
+  const { id } = await params;
+  const result = await getWishlist(id);
 
   if (!result.success || !result.data) {
     notFound();

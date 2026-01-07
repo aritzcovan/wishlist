@@ -13,13 +13,13 @@ export async function middleware(request: NextRequest) {
   // Redirect to login if accessing protected route without authentication
   if (isProtectedPath && !user) {
     const url = request.nextUrl.clone()
-    url.pathname = '/login'
+    url.pathname = '/auth/login'
     url.searchParams.set('redirect', request.nextUrl.pathname)
     return Response.redirect(url)
   }
 
   // Redirect to dashboard if already logged in and accessing auth pages
-  const authPaths = ['/login', '/register']
+  const authPaths = ['/auth/login', '/auth/register']
   const isAuthPath = authPaths.some((path) =>
     request.nextUrl.pathname.startsWith(path)
   )

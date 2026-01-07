@@ -11,7 +11,7 @@ export function WishlistCard({ wishlist }: WishlistCardProps) {
     wishlist.item_count === 1 ? '1 item' : `${wishlist.item_count || 0} items`
 
   return (
-    <Link href={`/wishlists/${wishlist.id}`}>
+    <Link href={`/dashboard/wishlists/${wishlist.id}`}>
       <Card className="transition-shadow hover:shadow-md">
         <CardHeader>
           <CardTitle className="line-clamp-2">{wishlist.name}</CardTitle>

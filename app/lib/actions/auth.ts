@@ -36,47 +36,39 @@ export async function registerUser(
     }
   }
 
-  try {
-    const supabase = createClient()
+  const supabase = await createClient()
 
-    // Check if email already exists
-    const { data: existingUser } = await supabase
-      .from('auth.users')
-      .select('email')
-      .eq('email', input.email)
-      .single()
+  // Create user (Supabase will handle duplicate email check)
+  const { data, error } = await supabase.auth.signUp({
+    email: input.email,
+    password: input.password,
+    options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`,
+    },
+  })
 
-    if (existingUser) {
-      return {
-        success: false,
-        error: 'Email already exists',
-      }
+  if (error) {
+    console.error('Registration error:', error)
+    return {
+      success: false,
+      error: error.message || 'Failed to create account',
     }
+  }
 
-    // Create user
-    const { data, error } = await supabase.auth.signUp({
-      email: input.email,
-      password: input.password,
-      options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/callback`,
-      },
-    })
-
-    if (error) {
-      console.error('Registration error:', error)
-      return {
-        success: false,
-        error: error.message || 'Failed to create account',
-      }
+  if (!data.user) {
+    return {
+      success: false,
+      error: 'Failed to create account',
     }
+  }
 
-    if (!data.user) {
-      return {
-        success: false,
-        error: 'Failed to create account',
-      }
-    }
-
+  // Check if email confirmation is required
+  if (data.session) {
+    // User is logged in, redirect to dashboard (redirect throws to perform the redirect)
+    revalidatePath('/dashboard', 'layout')
+    redirect('/dashboard')
+  } else {
+    // Email confirmation required
     return {
       success: true,
       data: {
@@ -84,12 +76,6 @@ export async function registerUser(
         email: data.user.email!,
         created_at: data.user.created_at,
       },
-    }
-  } catch (error) {
-    console.error('Registration error:', error)
-    return {
-      success: false,
-      error: 'An unexpected error occurred',
     }
   }
 }
@@ -105,65 +91,49 @@ export async function loginUser(
     }
   }
 
-  try {
-    const supabase = createClient()
+  const supabase = await createClient()
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: input.email,
-      password: input.password,
-    })
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: input.email,
+    password: input.password,
+  })
 
-    if (error) {
-      console.error('Login error:', error)
-      return {
-        success: false,
-        error: 'Invalid credentials',
-      }
-    }
-
-    if (!data.user) {
-      return {
-        success: false,
-        error: 'User not found',
-      }
-    }
-
-    // Redirect to dashboard
-    revalidatePath('/dashboard', 'layout')
-    redirect('/dashboard')
-  } catch (error) {
+  if (error) {
     console.error('Login error:', error)
     return {
       success: false,
-      error: 'An unexpected error occurred',
+      error: 'Invalid credentials',
     }
   }
+
+  if (!data.user) {
+    return {
+      success: false,
+      error: 'User not found',
+    }
+  }
+
+  // Redirect to dashboard (redirect throws an error to perform the redirect)
+  revalidatePath('/dashboard', 'layout')
+  redirect('/dashboard')
 }
 
 export async function logoutUser(): Promise<ActionResponse> {
-  try {
-    const supabase = createClient()
+  const supabase = await createClient()
 
-    const { error } = await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut()
 
-    if (error) {
-      console.error('Logout error:', error)
-      return {
-        success: false,
-        error: 'Failed to log out',
-      }
-    }
-
-    // Redirect to login
-    revalidatePath('/login', 'layout')
-    redirect('/login')
-  } catch (error) {
+  if (error) {
     console.error('Logout error:', error)
     return {
       success: false,
-      error: 'An unexpected error occurred',
+      error: 'Failed to log out',
     }
   }
+
+  // Redirect to login (redirect throws to perform the redirect)
+  revalidatePath('/auth/login', 'layout')
+  redirect('/auth/login')
 }
 
 export async function resetPassword(
@@ -178,10 +148,10 @@ export async function resetPassword(
   }
 
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { error } = await supabase.auth.resetPasswordForEmail(input.email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/callback?type=recovery`,
+      redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback?type=recovery`,
     })
 
     if (error) {

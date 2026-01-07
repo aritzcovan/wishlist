@@ -8,7 +8,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   // Check authentication
   const {
@@ -16,7 +16,7 @@ export default async function DashboardLayout({
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/login')
+    redirect('/auth/login')
   }
 
   return (
@@ -37,7 +37,7 @@ export default async function DashboardLayout({
                   Dashboard
                 </Link>
                 <Link
-                  href="/wishlists/new"
+                  href="/dashboard/wishlists/new"
                   className="text-sm font-medium transition-colors hover:text-primary"
                 >
                   New Wishlist

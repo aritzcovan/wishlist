@@ -1,5 +1,4 @@
-import { redirect } from 'next/navigation'
-import { getWishlists, createSampleWishlist } from '@/app/lib/actions/wishlist'
+import { getWishlists } from '@/app/lib/actions/wishlist'
 import { WishlistCard } from '@/app/components/wishlist/WishlistCard'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -28,16 +27,6 @@ export default async function DashboardPage() {
 
   const wishlists = result.data || []
 
-  // If no wishlists, create sample wishlist
-  if (wishlists.length === 0) {
-    const sampleResult = await createSampleWishlist()
-    
-    if (sampleResult.success && sampleResult.data) {
-      // Redirect to refresh the page with the new wishlist
-      redirect('/dashboard')
-    }
-  }
-
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -50,7 +39,7 @@ export default async function DashboardPage() {
               : `You have ${wishlists.length} ${wishlists.length === 1 ? 'wishlist' : 'wishlists'}`}
           </p>
         </div>
-        <Link href="/wishlists/new">
+        <Link href="/dashboard/wishlists/new">
           <Button>Create Wishlist</Button>
         </Link>
       </div>
@@ -69,7 +58,7 @@ export default async function DashboardPage() {
             <p className="mt-2 text-sm text-muted-foreground">
               Get started by creating your first wishlist
             </p>
-            <Link href="/wishlists/new">
+            <Link href="/dashboard/wishlists/new">
               <Button className="mt-4">Create Your First Wishlist</Button>
             </Link>
           </div>

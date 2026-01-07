@@ -32,7 +32,7 @@ export async function createItem(
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const {
@@ -138,7 +138,7 @@ export async function updateItem(
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const {
@@ -225,7 +225,7 @@ export async function updateItem(
 
 export async function deleteItem(id: string): Promise<ActionResponse<void>> {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const {

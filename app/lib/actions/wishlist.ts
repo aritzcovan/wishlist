@@ -15,7 +15,7 @@ export async function getWishlists(): Promise<
   ActionResponse<Wishlist[]>
 > {
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Get current user
     const {
@@ -71,7 +71,7 @@ export async function getWishlist(
   id: string
 ): Promise<ActionResponse<WishlistWithItems>> {
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Get current user
     const {
@@ -135,7 +135,7 @@ export async function createWishlist(
   }
 
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Get current user
     const {
@@ -209,7 +209,7 @@ export async function updateWishlist(
   }
 
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Get current user
     const {
@@ -273,7 +273,7 @@ export async function updateWishlist(
 
 export async function deleteWishlist(id: string): Promise<ActionResponse> {
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Get current user
     const {
@@ -319,7 +319,7 @@ export async function createSampleWishlist(): Promise<
   ActionResponse<WishlistWithItems>
 > {
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Get current user
     const {

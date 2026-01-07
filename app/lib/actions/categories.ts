@@ -13,7 +13,7 @@ export async function getCategories(): Promise<
   ActionResponse<EventCategory[]>
 > {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const {
@@ -69,7 +69,7 @@ export async function createCustomCategory(
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const {
@@ -143,7 +143,7 @@ export async function updateCustomCategory(
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const {
@@ -231,7 +231,7 @@ export async function deleteCustomCategory(
   id: string
 ): Promise<ActionResponse<void>> {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const {
