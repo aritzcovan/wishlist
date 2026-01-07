@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "I would like to build a wishlist app that allows users to create lists of thing they want to buy. Each item on the wishlist should be categorized by an event like birthday, christmas, anniversary, just because, and any other event you think are appropriate. Beyond the preset list of categories, the user should have the ability to enter categories of their own. that mean that this app will need to provide register/login funtionality. The user should be able to share their withlist with others by emailing anyone the content of whatever wishlist is in question. when the user logs in, they should see a screen of cards showing each of their wishlists. if the user does not have any wishlists, a sample should be prepopulated and shown. the app should have dark and light theme functionality and use shadcn components to give the app a modern design look and feel"
 
+## Clarifications
+
+### Session 2025-01-27
+
+- Q: What password requirements should be enforced during registration? → A: Minimum 8 characters, at least one letter and one number
+- Q: Should users be able to edit and delete wishlists, items, and custom categories? → A: Users can edit and delete wishlists, items, and custom categories
+- Q: How should the system send emails for wishlist sharing? → A: Use a third-party email service API
+- Q: What uniqueness constraints should be enforced? → A: Wishlist names must be unique per user; item names can be duplicated within a wishlist
+- Q: How should users recover forgotten passwords? → A: Password reset via email link (reset link sent to registered email)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - User Registration and Authentication (Priority: P1)
@@ -17,7 +27,7 @@ A new user wants to create an account to start using the wishlist app. They regi
 
 **Acceptance Scenarios**:
 
-1. **Given** a user is on the registration page, **When** they provide a valid email and password, **Then** an account is created and they are automatically logged in
+1. **Given** a user is on the registration page, **When** they provide a valid email and password meeting requirements (minimum 8 characters, at least one letter and one number), **Then** an account is created and they are automatically logged in
 2. **Given** a user has an account, **When** they provide correct credentials on the login page, **Then** they are authenticated and redirected to their dashboard
 3. **Given** a user provides incorrect credentials, **When** they attempt to log in, **Then** an error message is displayed and they remain on the login page
 4. **Given** a user is logged in, **When** they log out, **Then** they are redirected to the login page and cannot access protected routes
@@ -93,41 +103,55 @@ A logged-in user wants to share one of their wishlists with others by sending th
 ### Edge Cases
 
 - What happens when a user tries to register with an email that already exists?
-- How does the system handle a user who forgets their password?
+- What happens when a user tries to create a wishlist with a name that already exists for their account?
+- How does the system handle a user who forgets their password? (Answer: Password reset via email link)
+- What happens when a user requests password reset with an unregistered email?
+- How long should password reset links remain valid?
 - What happens when a user tries to add an item without a name or category?
 - How does the system handle very long wishlist names or item descriptions?
 - What happens when a user tries to share a wishlist with no items?
 - How does the system handle duplicate custom category names?
 - What happens when a user deletes a custom category that has items assigned to it?
+- What happens when a user deletes a wishlist that contains items?
+- What confirmation is required before deleting wishlists, items, or categories?
 - How does the system handle email sending failures (invalid addresses, network errors)?
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: System MUST allow users to create accounts with email and password
+- **FR-001**: System MUST allow users to create accounts with email and password. Passwords MUST meet minimum requirements: at least 8 characters with at least one letter and one number
 - **FR-002**: System MUST authenticate users and maintain secure sessions
 - **FR-003**: System MUST allow users to log out
+- **FR-024**: System MUST allow users to request password reset via email link
+- **FR-025**: System MUST send password reset links to the user's registered email address
+- **FR-026**: System MUST allow users to set a new password using a valid reset link
 - **FR-004**: System MUST display a dashboard showing all user wishlists as cards
 - **FR-005**: System MUST automatically create and display a sample wishlist when a user has no wishlists
-- **FR-006**: System MUST allow users to create new wishlists with a name
+- **FR-006**: System MUST allow users to create new wishlists with a name. Wishlist names MUST be unique per user
 - **FR-007**: System MUST allow users to add items to wishlists with at minimum: item name, description, and event category
 - **FR-008**: System MUST provide preset event categories: birthday, Christmas, anniversary, just because, graduation, wedding, housewarming, baby shower
 - **FR-009**: System MUST allow users to create custom event categories
 - **FR-010**: System MUST allow users to select from both preset and custom categories when adding items
 - **FR-011**: System MUST allow users to share wishlists via email by entering recipient email addresses
-- **FR-012**: System MUST send emails containing wishlist name and all items with their categories
+- **FR-012**: System MUST send emails containing wishlist name and all items with their categories via a third-party email service API
 - **FR-013**: System MUST validate email addresses before sending
 - **FR-014**: System MUST support dark and light theme functionality
 - **FR-015**: System MUST use shadcn UI components for consistent, modern design
 - **FR-016**: System MUST persist user accounts, wishlists, items, and categories
 - **FR-017**: System MUST protect user data so users can only access their own wishlists
+- **FR-018**: System MUST allow users to edit wishlist names
+- **FR-019**: System MUST allow users to delete wishlists
+- **FR-020**: System MUST allow users to edit item names, descriptions, and categories
+- **FR-021**: System MUST allow users to delete items from wishlists
+- **FR-022**: System MUST allow users to edit custom category names
+- **FR-023**: System MUST allow users to delete custom categories
 
 ### Key Entities *(include if feature involves data)*
 
 - **User**: Represents an authenticated user account. Key attributes: email (unique identifier), password (hashed), creation date. Relationships: owns multiple Wishlists.
 
-- **Wishlist**: Represents a collection of items a user wants. Key attributes: name, creation date, owner (User). Relationships: belongs to one User, contains multiple Items.
+- **Wishlist**: Represents a collection of items a user wants. Key attributes: name (must be unique per user), creation date, owner (User). Relationships: belongs to one User, contains multiple Items.
 
 - **Item**: Represents a single thing a user wants to buy. Key attributes: name, description, category (EventCategory), wishlist (Wishlist). Relationships: belongs to one Wishlist, has one EventCategory.
 
