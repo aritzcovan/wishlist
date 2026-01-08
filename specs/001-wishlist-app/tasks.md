@@ -135,13 +135,13 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 4
 
-- [ ] T049 [US4] Add custom category creation option to ItemForm component in `app/components/wishlist/ItemForm.tsx`
-- [ ] T050 [US4] Create createCustomCategory server action in `app/lib/actions/categories.ts` with name validation (1-50 characters, unique per user)
-- [ ] T051 [US4] Update getCategories server action to include user's custom categories alongside preset categories
-- [ ] T052 [US4] Update ItemForm to display both preset and custom categories in selection dropdown
-- [ ] T053 [US4] Create updateCustomCategory server action in `app/lib/actions/categories.ts` for editing custom category names
-- [ ] T054 [US4] Create deleteCustomCategory server action in `app/lib/actions/categories.ts` with check to prevent deletion if category has items
-- [ ] T055 [US4] Add UI for managing custom categories (edit/delete) in wishlist detail page or settings
+- [x] T049 [US4] Add custom category creation option to ItemForm component in `app/components/wishlist/ItemForm.tsx`
+- [x] T050 [US4] Create createCustomCategory server action in `app/lib/actions/categories.ts` with name validation (1-50 characters, unique per user)
+- [x] T051 [US4] Update getCategories server action to include user's custom categories alongside preset categories
+- [x] T052 [US4] Update ItemForm to display both preset and custom categories in selection dropdown
+- [x] T053 [US4] Create updateCustomCategory server action in `app/lib/actions/categories.ts` for editing custom category names
+- [x] T054 [US4] Create deleteCustomCategory server action in `app/lib/actions/categories.ts` with check to prevent deletion if category has items
+- [x] T055 [US4] Add UI for managing custom categories (edit/delete) in wishlist detail page or settings
 
 **Checkpoint**: At this point, User Stories 1, 2, 3, AND 4 should all work independently. Users can create and use custom event categories.
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createItem } from '@/app/lib/actions/items';
-import { getCategories } from '@/app/lib/actions/categories';
+import { getCategories, createCustomCategory } from '@/app/lib/actions/categories';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Plus } from 'lucide-react';
 import type { EventCategory } from '@/app/types';
 
 interface ItemFormProps {
@@ -30,25 +31,64 @@ export function ItemForm({ wishlistId }: ItemFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [showNewCategory, setShowNewCategory] = useState(false);
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [isCreatingCategory, setIsCreatingCategory] = useState(false);
+
+  // Load categories
+  const loadCategories = async () => {
+    const result = await getCategories();
+    if (result.success && result.data) {
+      setCategories(result.data);
+      // Pre-select first category if available
+      if (result.data.length > 0 && !categoryId) {
+        setCategoryId(result.data[0].id);
+      }
+    } else {
+      setError('Failed to load categories');
+    }
+    setIsLoadingCategories(false);
+  };
 
   // Load categories on mount
   useEffect(() => {
-    const loadCategories = async () => {
-      const result = await getCategories();
-      if (result.success && result.data) {
-        setCategories(result.data);
-        // Pre-select first category if available
-        if (result.data.length > 0) {
-          setCategoryId(result.data[0].id);
-        }
-      } else {
-        setError('Failed to load categories');
-      }
-      setIsLoadingCategories(false);
-    };
-
     loadCategories();
   }, []);
+
+  // Handle creating custom category
+  const handleCreateCategory = async () => {
+    if (!newCategoryName.trim()) {
+      setError('Category name cannot be empty');
+      return;
+    }
+
+    setIsCreatingCategory(true);
+    setError(null);
+
+    try {
+      const result = await createCustomCategory({ name: newCategoryName });
+
+      if (!result.success) {
+        setError(result.error || 'Failed to create category');
+        setIsCreatingCategory(false);
+        return;
+      }
+
+      // Reload categories and select the new one
+      await loadCategories();
+      if (result.data) {
+        setCategoryId(result.data.id);
+      }
+      
+      // Reset form
+      setNewCategoryName('');
+      setShowNewCategory(false);
+      setIsCreatingCategory(false);
+    } catch (err) {
+      setError('An unexpected error occurred');
+      setIsCreatingCategory(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,8 +175,67 @@ export function ItemForm({ wishlistId }: ItemFormProps) {
               ))}
             </SelectContent>
           </Select>
+          {!showNewCategory && (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowNewCategory(true)}
+              disabled={isLoading}
+              className="w-full"
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Create Custom Category
+            </Button>
+          )}
         </div>
       </div>
+
+      {/* New Category Form */}
+      {showNewCategory && (
+        <div className="rounded-md border bg-muted/50 p-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="new-category">New Category Name</Label>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setShowNewCategory(false);
+                setNewCategoryName('');
+                setError(null);
+              }}
+              disabled={isCreatingCategory}
+            >
+              Cancel
+            </Button>
+          </div>
+          <div className="flex gap-2">
+            <Input
+              id="new-category"
+              type="text"
+              placeholder="e.g., Graduation"
+              value={newCategoryName}
+              onChange={(e) => setNewCategoryName(e.target.value)}
+              maxLength={50}
+              disabled={isCreatingCategory}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleCreateCategory();
+                }
+              }}
+            />
+            <Button
+              type="button"
+              onClick={handleCreateCategory}
+              disabled={isCreatingCategory || !newCategoryName.trim()}
+            >
+              {isCreatingCategory ? 'Creating...' : 'Create'}
+            </Button>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-2">
         <Label htmlFor="description">Description (Optional)</Label>
