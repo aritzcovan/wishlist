@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/app/lib/supabase/client'
 import { LogoutButton } from '@/app/components/auth/LogoutButton'
+import { ThemeToggle } from '@/app/components/ThemeToggle'
 import Link from 'next/link'
 
 export default async function DashboardLayout({
@@ -45,6 +46,7 @@ export default async function DashboardLayout({
               </div>
             </div>
             <div className="flex items-center gap-4">
+              <ThemeToggle />
               <span className="text-sm text-muted-foreground">
                 {user.email}
               </span>

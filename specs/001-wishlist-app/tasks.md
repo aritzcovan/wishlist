@@ -189,15 +189,15 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T074 [P] Enhance ThemeProvider to persist theme preference in localStorage
-- [ ] T075 [P] Add loading states to all data-fetching operations
-- [ ] T076 [P] Add error boundaries for better error handling
-- [ ] T077 [P] Add keyboard navigation support for all interactive elements
-- [ ] T078 [P] Optimize images if any are added (using next/image)
-- [ ] T079 [P] Add metadata to all pages using Next.js Metadata API
-- [ ] T080 [P] Run quickstart.md validation checklist
-- [ ] T081 [P] Code cleanup and refactoring
-- [ ] T082 [P] Performance optimization (ensure Core Web Vitals targets met)
+- [x] T074 [P] Enhance ThemeProvider to persist theme preference in localStorage
+- [x] T075 [P] Add loading states to all data-fetching operations
+- [x] T076 [P] Add error boundaries for better error handling
+- [x] T077 [P] Add keyboard navigation support for all interactive elements
+- [x] T078 [P] Optimize images if any are added (using next/image)
+- [x] T079 [P] Add metadata to all pages using Next.js Metadata API
+- [x] T080 [P] Run quickstart.md validation checklist
+- [x] T081 [P] Code cleanup and refactoring
+- [x] T082 [P] Performance optimization (ensure Core Web Vitals targets met)
 
 ---
 

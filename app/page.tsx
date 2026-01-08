@@ -3,6 +3,12 @@ import { createClient } from '@/app/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Gift } from 'lucide-react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Home | Wishlist App',
+  description: 'Create and share your perfect wishlist for any occasion',
+}
 
 export default async function Home() {
   const supabase = await createClient()
