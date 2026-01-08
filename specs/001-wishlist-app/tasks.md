@@ -173,15 +173,15 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Implement edit and delete capabilities for wishlists, items, and custom categories (from clarifications)
 
-- [ ] T065 [P] Create updateWishlist server action in `app/lib/actions/wishlist.ts` for editing wishlist names
-- [ ] T066 [P] Create deleteWishlist server action in `app/lib/actions/wishlist.ts` with cascade delete of items
-- [ ] T067 [P] Create updateItem server action in `app/lib/actions/items.ts` for editing item name, description, and category
-- [ ] T068 [P] Create deleteItem server action in `app/lib/actions/items.ts` for removing items from wishlists
-- [ ] T069 [P] Add edit functionality to WishlistCard component (edit name)
-- [ ] T070 [P] Add delete functionality to WishlistCard component with confirmation dialog
-- [ ] T071 [P] Add edit functionality to item display components (edit name, description, category)
-- [ ] T072 [P] Add delete functionality to item display components with confirmation
-- [ ] T073 [P] Add confirmation dialogs for all delete operations using shadcn/ui Dialog component
+- [x] T065 [P] Create updateWishlist server action in `app/lib/actions/wishlist.ts` for editing wishlist names
+- [x] T066 [P] Create deleteWishlist server action in `app/lib/actions/wishlist.ts` with cascade delete of items
+- [x] T067 [P] Create updateItem server action in `app/lib/actions/items.ts` for editing item name, description, and category
+- [x] T068 [P] Create deleteItem server action in `app/lib/actions/items.ts` for removing items from wishlists
+- [x] T069 [P] Add edit functionality to WishlistCard component (edit name)
+- [x] T070 [P] Add delete functionality to WishlistCard component with confirmation dialog
+- [x] T071 [P] Add edit functionality to item display components (edit name, description, category)
+- [x] T072 [P] Add delete functionality to item display components with confirmation
+- [x] T073 [P] Add confirmation dialogs for all delete operations using shadcn/ui Dialog component
 
 ---
 
