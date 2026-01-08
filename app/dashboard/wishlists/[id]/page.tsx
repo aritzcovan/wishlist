@@ -4,6 +4,7 @@ import { getWishlist } from '@/app/lib/actions/wishlist';
 import { ItemList } from '@/app/components/wishlist/ItemList';
 import { ItemForm } from '@/app/components/wishlist/ItemForm';
 import { CategoryManager } from '@/app/components/wishlist/CategoryManager';
+import { ShareDialog } from '@/app/components/wishlist/ShareDialog';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
@@ -43,7 +44,10 @@ export default async function WishlistDetailPage({
             Created {new Date(wishlist.created_at).toLocaleDateString()}
           </p>
         </div>
-        <CategoryManager />
+        <div className="flex items-center gap-2">
+          <ShareDialog wishlistId={wishlist.id} wishlistName={wishlist.name} />
+          <CategoryManager />
+        </div>
       </div>
 
       {/* Add Item Form */}

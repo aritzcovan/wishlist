@@ -155,15 +155,15 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 5
 
-- [ ] T056 [US5] Add share button to wishlist detail page
-- [ ] T057 [US5] Create share dialog component in `app/components/wishlist/ShareDialog.tsx` with email input field(s)
-- [ ] T058 [US5] Create email sharing API route handler in `app/api/share/route.ts` with POST method
-- [ ] T059 [US5] Implement email sending logic in API route using Resend service from `app/lib/email/send.ts`
-- [ ] T060 [US5] Format wishlist content for email (wishlist name, items grouped by category) in email template
-- [ ] T061 [US5] Add email validation for recipient addresses in share API route
-- [ ] T062 [US5] Add error handling for email sending failures (invalid addresses, network errors)
-- [ ] T063 [US5] Add success confirmation message after email is sent
-- [ ] T064 [US5] Support multiple recipient email addresses (1-10 recipients)
+- [x] T056 [US5] Add share button to wishlist detail page
+- [x] T057 [US5] Create share dialog component in `app/components/wishlist/ShareDialog.tsx` with email input field(s)
+- [x] T058 [US5] Create email sharing API route handler in `app/api/share/route.ts` with POST method
+- [x] T059 [US5] Implement email sending logic in API route using Resend service from `app/lib/email/send.ts`
+- [x] T060 [US5] Format wishlist content for email (wishlist name, items grouped by category) in email template
+- [x] T061 [US5] Add email validation for recipient addresses in share API route
+- [x] T062 [US5] Add error handling for email sending failures (invalid addresses, network errors)
+- [x] T063 [US5] Add success confirmation message after email is sent
+- [x] T064 [US5] Support multiple recipient email addresses (1-10 recipients)
 
 **Checkpoint**: At this point, all user stories should be independently functional. Users can share wishlists via email.
 
